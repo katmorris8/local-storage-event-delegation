@@ -4,6 +4,13 @@ const items = JSON.parse(localStorage.getItem('items')) || [];
 
 function addItem(e) {
   e.preventDefault();
+  if (items.length === 0) {
+    const starter = {
+      text: '+',
+      done: false
+    }
+    items.push(starter)
+  }
   const text = (this.querySelector('[name=item]')).value;
   const item = {
     text,
@@ -39,3 +46,7 @@ addItems.addEventListener('submit', addItem);
 itemsList.addEventListener('click', toggleDone);
 
 populateList(items, itemsList);
+
+// when an item is added
+// add checkbox + or checkbox -
+// clear button
