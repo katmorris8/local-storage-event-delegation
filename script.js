@@ -6,7 +6,7 @@ function addItem(e) {
   e.preventDefault();
   if (items.length === 0) {
     const starter = {
-      text: '+',
+      text: 'taco/untaco all',
       done: false
     }
     items.push(starter)
@@ -37,7 +37,11 @@ function toggleDone(e) {
   if (!e.target.matches('input')) return;
   const el = e.target;
   const index = el.dataset.index;
-  items[index].done = !items[index].done;
+  if (index === '0') {
+    items['0'].done ? items.forEach(item => item.done = false) : items.forEach(item => item.done = true);
+  } else {
+    items[index].done = !items[index].done;
+  }
   localStorage.setItem('items', JSON.stringify(items));
   populateList(items, itemsList);
 }
