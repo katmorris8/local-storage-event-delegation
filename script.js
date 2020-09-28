@@ -1,6 +1,9 @@
+const clearBtn = document.querySelector('.clear-btn');
 const addItems = document.querySelector('.add-items');
 const itemsList = document.querySelector('.plates');
 const items = JSON.parse(localStorage.getItem('items')) || [];
+
+window.onload = showClearButton;
 
 function addItem(e) {
   e.preventDefault();
@@ -9,7 +12,8 @@ function addItem(e) {
       text: 'taco/untaco all',
       done: false
     }
-    items.push(starter)
+    items.push(starter);
+    showClearButton();
   }
   const text = (this.querySelector('[name=item]')).value;
   const item = {
@@ -46,11 +50,11 @@ function toggleDone(e) {
   populateList(items, itemsList);
 }
 
+function showClearButton() {
+  items.length === 0 ? clearBtn.style.display = 'none' : clearBtn.style.display = 'flex';
+}
+
 addItems.addEventListener('submit', addItem);
 itemsList.addEventListener('click', toggleDone);
 
 populateList(items, itemsList);
-
-// when an item is added
-// add checkbox + or checkbox -
-// clear button
