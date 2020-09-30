@@ -1,7 +1,7 @@
 const clearBtn = document.querySelector('.clear-btn');
 const addItems = document.querySelector('.add-items');
 const itemsList = document.querySelector('.plates');
-const items = JSON.parse(localStorage.getItem('items')) || [];
+let items = JSON.parse(localStorage.getItem('items')) || [];
 
 window.onload = showClearButton;
 
@@ -50,11 +50,19 @@ function toggleDone(e) {
   populateList(items, itemsList);
 }
 
+function clearItems() {
+  items = [];
+  localStorage.setItem('items', JSON.stringify(items));
+  populateList(items, itemsList);
+  showClearButton();
+}
+
 function showClearButton() {
   items.length === 0 ? clearBtn.style.display = 'none' : clearBtn.style.display = 'flex';
 }
 
 addItems.addEventListener('submit', addItem);
 itemsList.addEventListener('click', toggleDone);
+clearBtn.addEventListener('click', clearItems);
 
 populateList(items, itemsList);
