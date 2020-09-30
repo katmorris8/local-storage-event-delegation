@@ -58,7 +58,7 @@ function clearItems() {
 }
 
 function showClearButton() {
-  items.length === 0 ? clearBtn.style.display = 'none' : clearBtn.style.display = 'flex';
+  clearBtn.style.display = items.length === 0 ? 'none' : 'flex'
 }
 
 addItems.addEventListener('submit', addItem);
